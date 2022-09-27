@@ -1,7 +1,7 @@
 package com.kpi.lab1.controller;
 
-import com.kpi.lab1.processing.FileProcessingResult;
 import com.kpi.lab1.processing.DirectoryProcessor;
+import com.kpi.lab1.processing.FileProcessingResult;
 import com.kpi.lab1.utils.FileInputOutputHelper;
 import com.kpi.lab1.utils.InputOutputHelper;
 
@@ -11,12 +11,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class FileProcessingController {
-    private ExecutorService executorsPool = Executors.newFixedThreadPool(4);
+    private ExecutorService executorsPool;
     private DirectoryProcessor directoryProcessor;
     private FileInputOutputHelper fileInputOutputHelper;
     private InputOutputHelper inputOutputHelper;
 
     public FileProcessingController() {
+        this.executorsPool = Executors.newCachedThreadPool();
         this.directoryProcessor = new DirectoryProcessor(executorsPool);
         this.fileInputOutputHelper = new FileInputOutputHelper();
         this.inputOutputHelper = new InputOutputHelper();
