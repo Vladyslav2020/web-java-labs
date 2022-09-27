@@ -2,12 +2,10 @@ package com.kpi.lab1.processing;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
-import java.util.stream.Collectors;
 
 public class DirectoryProcessor {
     private ExecutorService executorsPool;
@@ -16,19 +14,27 @@ public class DirectoryProcessor {
         this.executorsPool = executorsPool;
     }
 
-    public List<FileProcessingResult> process(File file) {
-        File[] files = file.listFiles();
+    public List<FileProcessingResult> process(File directory) {
+        File[] files = directory.listFiles();
         if (files == null) {
             return new ArrayList<>();
         }
-        List<FileProcessor> fileProcessingTasks = Arrays.stream(files).filter(file1 -> file1.getName().endsWith(".txt")).map(FileProcessor::new).toList();
-        List<Future<FileProcessingResult>> futureResults = fileProcessingTasks.stream().map(fileProcessor -> executorsPool.submit(fileProcessor)).toList();
-        return futureResults.stream().map(result -> {
+        List<FileProcessingResult> results = new ArrayList<>();
+        List<Future<FileProcessingResult>> futureResults = new ArrayList<>();
+        for (File file : files) {
+            if (file.isDirectory()) {
+                results.addAll(process(file));
+            } else if (file.getName().endsWith(".txt")) {
+                futureResults.add(executorsPool.submit(new FileProcessor(file)));
+            }
+        }
+        results.addAll(futureResults.stream().map(result -> {
             try {
                 return result.get();
             } catch (InterruptedException | ExecutionException e) {
                 throw new RuntimeException(e);
             }
-        }).collect(Collectors.toList());
+        }).toList());
+        return results;
     }
 }
