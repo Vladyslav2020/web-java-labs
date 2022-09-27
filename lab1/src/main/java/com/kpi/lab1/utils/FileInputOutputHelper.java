@@ -25,9 +25,14 @@ public class FileInputOutputHelper {
     public void writeFileProcessingResults(List<FileProcessingResult> fileProcessingResults, String resultsFileName) {
         File file = new File(resultsFileName);
         try (OutputStream outputStream = new FileOutputStream(file)) {
-            for (FileProcessingResult fileProcessingResult : fileProcessingResults) {
-                outputStream.write((fileProcessingResult.getFileName() + " -> " + fileProcessingResult.getCountFloatNumbers() + "\n").getBytes());
+            if (fileProcessingResults.isEmpty()) {
+                outputStream.write("There is no file in this directory.".getBytes());
+            } else {
+                for (FileProcessingResult fileProcessingResult : fileProcessingResults) {
+                    outputStream.write(String.format("File %s contains the following count of the float numbers: %d\n", fileProcessingResult.getFileName(), fileProcessingResult.getCountFloatNumbers()).getBytes()/*fileProcessingResult.getFileName() + " -> " + fileProcessingResult.getCountFloatNumbers() + "\n").getBytes()*/);
+                }
             }
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

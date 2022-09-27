@@ -21,7 +21,7 @@ public class DirectoryProcessor {
         if (files == null) {
             return new ArrayList<>();
         }
-        List<FileProcessor> fileProcessingTasks = Arrays.stream(files).map(FileProcessor::new).toList();
+        List<FileProcessor> fileProcessingTasks = Arrays.stream(files).filter(file1 -> file1.getName().endsWith(".txt")).map(FileProcessor::new).toList();
         List<Future<FileProcessingResult>> futureResults = fileProcessingTasks.stream().map(fileProcessor -> executorsPool.submit(fileProcessor)).toList();
         return futureResults.stream().map(result -> {
             try {

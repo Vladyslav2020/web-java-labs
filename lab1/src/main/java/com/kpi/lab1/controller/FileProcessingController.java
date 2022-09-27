@@ -23,13 +23,30 @@ public class FileProcessingController {
     }
 
     public void run() {
-        String directoryName = inputOutputHelper.readString("Input a directory name: ");
-        String resultFileName = inputOutputHelper.readString("Input result file name: ");
+        String directoryName = getFileOrDirectoryPath("Input a directory name: ");
+        String resultFileName = getFileOrDirectoryPath("Input result file name: ");
         File directory = new File(directoryName);
         List<FileProcessingResult> fileProcessingResults = directoryProcessor.process(directory);
+        inputOutputHelper.printString("Result of processing:");
         fileInputOutputHelper.writeFileProcessingResults(fileProcessingResults, resultFileName);
         fileInputOutputHelper.getAllFileLines(resultFileName).forEach(line -> inputOutputHelper.printString(line));
         executorsPool.shutdown();
+    }
+
+    private String getFileOrDirectoryPath(String message) {
+        boolean isPathValid = false;
+        String path = null;
+        while (!isPathValid) {
+            path = inputOutputHelper.readString(message);
+            File file = new File(path);
+            if (!file.exists()) {
+                inputOutputHelper.printString("Invalid path!! Please try again.");
+            }
+            else {
+                isPathValid = true;
+            }
+        }
+        return path;
     }
 
 }
