@@ -1,4 +1,4 @@
-package com.kpi.lab2.utils;
+package com.kpi.lab2.views;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

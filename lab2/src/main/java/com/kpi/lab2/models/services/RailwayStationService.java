@@ -1,6 +1,6 @@
-package com.kpi.lab2.services;
+package com.kpi.lab2.models.services;
 
-import com.kpi.lab2.daos.RailwayStationDao;
+import com.kpi.lab2.models.daos.RailwayStationDao;
 import com.kpi.lab2.models.RailwayStation;
 
 import java.util.List;

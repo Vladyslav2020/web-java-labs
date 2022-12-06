@@ -1,4 +1,4 @@
-package com.kpi.lab2.utils.tables;
+package com.kpi.lab2.views.tables;
 
 import java.util.Collection;
 

@@ -1,6 +1,6 @@
-package com.kpi.lab2.services;
+package com.kpi.lab2.models.services;
 
-import com.kpi.lab2.daos.RailwayRouteDao;
+import com.kpi.lab2.models.daos.RailwayRouteDao;
 import com.kpi.lab2.models.RailwayRoute;
 import com.kpi.lab2.models.RailwayStation;
 

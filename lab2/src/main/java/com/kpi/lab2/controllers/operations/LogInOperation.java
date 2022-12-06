@@ -1,8 +1,8 @@
 package com.kpi.lab2.controllers.operations;
 
 import com.kpi.lab2.models.User;
-import com.kpi.lab2.services.UserService;
-import com.kpi.lab2.utils.InputOutputHelper;
+import com.kpi.lab2.models.services.UserService;
+import com.kpi.lab2.views.InputOutputHelper;
 import lombok.AllArgsConstructor;
 
 import java.util.List;

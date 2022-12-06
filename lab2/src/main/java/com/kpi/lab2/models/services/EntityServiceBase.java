@@ -1,6 +1,6 @@
-package com.kpi.lab2.services;
+package com.kpi.lab2.models.services;
 
-import com.kpi.lab2.daos.EntityDao;
+import com.kpi.lab2.models.daos.EntityDao;
 import com.kpi.lab2.models.Entity;
 import lombok.AllArgsConstructor;
 

@@ -1,7 +1,7 @@
 package com.kpi.lab2.controllers.operations;
 
-import com.kpi.lab2.utils.InputOutputHelper;
-import com.kpi.lab2.utils.Range;
+import com.kpi.lab2.views.InputOutputHelper;
+import com.kpi.lab2.views.Range;
 
 public enum EntityOperationType {
     READ_ALL,
@@ -10,7 +10,7 @@ public enum EntityOperationType {
     DELETE,
     QUIT;
 
-    private static InputOutputHelper inputOutputHelper = new InputOutputHelper();
+    private static final InputOutputHelper inputOutputHelper = new InputOutputHelper();
 
     public static EntityOperationType readOperationType(String entityName) {
         inputOutputHelper.printString("1 - Read " + entityName);

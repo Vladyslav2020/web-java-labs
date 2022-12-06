@@ -1,4 +1,4 @@
-package com.kpi.lab2.config;
+package com.kpi.lab2.models.daos.config;
 
 import org.apache.commons.dbcp.ConnectionFactory;
 import org.apache.commons.dbcp.DriverManagerConnectionFactory;

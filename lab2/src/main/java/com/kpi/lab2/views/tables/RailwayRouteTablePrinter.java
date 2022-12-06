@@ -1,7 +1,7 @@
-package com.kpi.lab2.utils.tables;
+package com.kpi.lab2.views.tables;
 
 import com.kpi.lab2.models.RailwayRoute;
-import com.kpi.lab2.services.TicketService;
+import com.kpi.lab2.models.services.TicketService;
 import lombok.AllArgsConstructor;
 
 import java.time.Duration;
@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 @AllArgsConstructor
 public class RailwayRouteTablePrinter<T extends RailwayRoute> extends TablePrinterBase<T> {
-    private static List<String> columns = Stream.of(Columns.values()).map(Columns::getName).collect(Collectors.toList());
+    private static final List<String> columns = Stream.of(Columns.values()).map(Columns::getName).collect(Collectors.toList());
 
     private TicketService ticketService;
 
@@ -60,7 +60,7 @@ public class RailwayRouteTablePrinter<T extends RailwayRoute> extends TablePrint
         TICKETS_NUMBER("Available tickets"),
         TRAIN("Train");
 
-        private String name;
+        private final String name;
 
         Columns(String name) {
             this.name = name;

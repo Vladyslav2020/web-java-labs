@@ -1,4 +1,4 @@
-package com.kpi.lab2.services;
+package com.kpi.lab2.models.services;
 
 import java.util.List;
 

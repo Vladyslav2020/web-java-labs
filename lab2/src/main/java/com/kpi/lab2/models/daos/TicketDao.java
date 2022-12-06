@@ -1,4 +1,4 @@
-package com.kpi.lab2.daos;
+package com.kpi.lab2.models.daos;
 
 import com.kpi.lab2.exceptions.SQLRuntimeException;
 import com.kpi.lab2.models.RailwayRoute;
@@ -16,8 +16,8 @@ import java.util.Map;
 import java.util.Set;
 
 public class TicketDao extends EntityDaoBase<Ticket> {
-    private UserDao userDao;
-    private RailwayRouteDao railwayRouteDao;
+    private final UserDao userDao;
+    private final RailwayRouteDao railwayRouteDao;
 
     public TicketDao(DataSource dataSource, UserDao userDao, RailwayRouteDao railwayRouteDao) {
         super(dataSource);

@@ -1,6 +1,6 @@
-package com.kpi.lab2.services;
+package com.kpi.lab2.models.services;
 
-import com.kpi.lab2.daos.TicketDao;
+import com.kpi.lab2.models.daos.TicketDao;
 import com.kpi.lab2.models.RailwayRoute;
 import com.kpi.lab2.models.Ticket;
 import com.kpi.lab2.models.User;

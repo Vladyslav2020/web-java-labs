@@ -1,4 +1,4 @@
-package com.kpi.lab2.daos;
+package com.kpi.lab2.models.daos;
 
 import java.util.List;
 

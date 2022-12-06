@@ -4,11 +4,11 @@ import com.kpi.lab2.models.RailwayRoute;
 import com.kpi.lab2.models.RailwayStation;
 import com.kpi.lab2.models.Train;
 import com.kpi.lab2.models.User;
-import com.kpi.lab2.services.RailwayRouteService;
-import com.kpi.lab2.services.RailwayStationService;
-import com.kpi.lab2.services.TrainService;
-import com.kpi.lab2.utils.InputOutputHelper;
-import com.kpi.lab2.utils.tables.RailwayRouteTablePrinter;
+import com.kpi.lab2.models.services.RailwayRouteService;
+import com.kpi.lab2.models.services.RailwayStationService;
+import com.kpi.lab2.models.services.TrainService;
+import com.kpi.lab2.views.InputOutputHelper;
+import com.kpi.lab2.views.tables.RailwayRouteTablePrinter;
 import lombok.AllArgsConstructor;
 
 import java.util.List;

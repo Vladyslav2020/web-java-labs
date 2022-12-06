@@ -1,4 +1,4 @@
-package com.kpi.lab2.daos;
+package com.kpi.lab2.models.daos;
 
 import com.kpi.lab2.exceptions.SQLRuntimeException;
 import com.kpi.lab2.models.Entity;
@@ -21,7 +21,6 @@ public abstract class EntityDaoBase<T extends Entity> implements EntityDao<T> {
         try (
                 Connection connection = dataSource.getConnection();
                 PreparedStatement statement = connection.prepareStatement(String.format("SELECT %s FROM %s WHERE id = ?", String.join(", ", getColumnsNames()), getTableName()))
-
         ) {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();

@@ -1,11 +1,11 @@
-package com.kpi.lab2.utils;
+package com.kpi.lab2.views;
 
 import java.time.LocalDateTime;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputOutputHelper {
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     public InputOutputHelper() {
         scanner.useDelimiter("\n");

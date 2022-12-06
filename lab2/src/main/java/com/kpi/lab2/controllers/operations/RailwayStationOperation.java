@@ -2,9 +2,9 @@ package com.kpi.lab2.controllers.operations;
 
 import com.kpi.lab2.models.RailwayStation;
 import com.kpi.lab2.models.User;
-import com.kpi.lab2.services.RailwayStationService;
-import com.kpi.lab2.utils.InputOutputHelper;
-import com.kpi.lab2.utils.tables.RailwayStationTablePrinter;
+import com.kpi.lab2.models.services.RailwayStationService;
+import com.kpi.lab2.views.InputOutputHelper;
+import com.kpi.lab2.views.tables.RailwayStationTablePrinter;
 import lombok.AllArgsConstructor;
 
 import java.util.List;

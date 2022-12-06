@@ -1,4 +1,4 @@
-package com.kpi.lab2.daos;
+package com.kpi.lab2.models.daos;
 
 import com.kpi.lab2.exceptions.SQLRuntimeException;
 import com.kpi.lab2.models.RailwayRoute;
@@ -16,8 +16,8 @@ import java.util.Map;
 import java.util.Set;
 
 public class RailwayRouteDao extends EntityDaoBase<RailwayRoute> {
-    private RailwayStationDao railwayStationDao;
-    private TrainDao trainDao;
+    private final RailwayStationDao railwayStationDao;
+    private final TrainDao trainDao;
 
     public RailwayRouteDao(DataSource dataSource, RailwayStationDao railwayStationDao, TrainDao trainDao) {
         super(dataSource);
