@@ -1,4 +1,4 @@
-package com.kpi.lab2.controllers.operations;
+package com.kpi.lab2.controllers.console.operations;
 
 import com.kpi.lab2.views.InputOutputHelper;
 import com.kpi.lab2.views.Range;

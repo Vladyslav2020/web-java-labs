@@ -1,7 +1,7 @@
 package com.kpi.lab2.models.services;
 
 import com.kpi.lab2.models.daos.EntityDao;
-import com.kpi.lab2.models.Entity;
+import com.kpi.lab2.models.entities.Entity;
 import lombok.AllArgsConstructor;
 
 import java.util.List;

@@ -1,10 +1,10 @@
 package com.kpi.lab2;
 
-import com.kpi.lab2.controllers.ConsoleApplicationController;
-import com.kpi.lab2.controllers.operations.*;
-import com.kpi.lab2.models.RailwayRoute;
-import com.kpi.lab2.models.RailwayStation;
-import com.kpi.lab2.models.Ticket;
+import com.kpi.lab2.controllers.console.ConsoleApplicationController;
+import com.kpi.lab2.controllers.console.operations.*;
+import com.kpi.lab2.models.entities.RailwayRoute;
+import com.kpi.lab2.models.entities.RailwayStation;
+import com.kpi.lab2.models.entities.Ticket;
 import com.kpi.lab2.models.services.*;
 import com.kpi.lab2.views.InputOutputHelper;
 import com.kpi.lab2.views.tables.RailwayRouteTablePrinter;

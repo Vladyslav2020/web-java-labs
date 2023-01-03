@@ -1,6 +1,7 @@
 package com.kpi.lab2.models.services;
 
 import com.kpi.lab2.models.daos.*;
+import com.kpi.lab2.models.mappers.RailwayRouteMapper;
 
 import java.util.Optional;
 import java.util.Set;
@@ -11,12 +12,19 @@ public enum EntityServicesFactory {
     private final Set<EntityService<?>> entityServices;
 
     EntityServicesFactory() {
+        RailwayRouteMapper railwayRouteMapper = new RailwayRouteMapper();
+        TrainService trainService = new TrainService(EntityDaoFactory.INSTANCE.getEntityDao(TrainDao.class));
+        RailwayStationService railwayStationService = new RailwayStationService(EntityDaoFactory.INSTANCE.getEntityDao(RailwayStationDao.class));
+        UserService userService = new UserService(EntityDaoFactory.INSTANCE.getEntityDao(UserDao.class));
+        RailwayRouteService railwayRouteService = new RailwayRouteService(EntityDaoFactory.INSTANCE.getEntityDao(RailwayRouteDao.class), railwayStationService, trainService, railwayRouteMapper);
+        TicketService ticketService = new TicketService(EntityDaoFactory.INSTANCE.getEntityDao(TicketDao.class), userService, railwayRouteService);
+        railwayRouteMapper.setTicketService(ticketService);
         entityServices = Set.of(
-                new UserService(EntityDaoFactory.INSTANCE.getEntityDao(UserDao.class)),
-                new RailwayStationService(EntityDaoFactory.INSTANCE.getEntityDao(RailwayStationDao.class)),
-                new RailwayRouteService(EntityDaoFactory.INSTANCE.getEntityDao(RailwayRouteDao.class)),
-                new TrainService(EntityDaoFactory.INSTANCE.getEntityDao(TrainDao.class)),
-                new TicketService(EntityDaoFactory.INSTANCE.getEntityDao(TicketDao.class))
+                userService,
+                railwayStationService,
+                trainService,
+                railwayRouteService,
+                ticketService
         );
     }
 

@@ -1,7 +1,7 @@
-package com.kpi.lab2.controllers;
+package com.kpi.lab2.controllers.console;
 
-import com.kpi.lab2.controllers.operations.Operation;
-import com.kpi.lab2.models.User;
+import com.kpi.lab2.controllers.console.operations.Operation;
+import com.kpi.lab2.models.entities.User;
 import com.kpi.lab2.views.InputOutputHelper;
 import com.kpi.lab2.views.Range;
 import lombok.RequiredArgsConstructor;

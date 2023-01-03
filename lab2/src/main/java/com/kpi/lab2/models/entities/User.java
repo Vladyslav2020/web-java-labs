@@ -1,13 +1,15 @@
-package com.kpi.lab2.models;
+package com.kpi.lab2.models.entities;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Builder
 @Data
-public class RailwayStation implements Entity {
+public class User implements Entity {
     private Long id;
     private String name;
+    private String password;
+    private Boolean isAdmin;
 
     @Override
     public Long getId() {

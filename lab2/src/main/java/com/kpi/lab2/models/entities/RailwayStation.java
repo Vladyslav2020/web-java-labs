@@ -1,14 +1,13 @@
-package com.kpi.lab2.models;
+package com.kpi.lab2.models.entities;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Builder
 @Data
-public class Train implements Entity {
+public class RailwayStation implements Entity {
     private Long id;
-    private Long number;
-    private Long numberOfSeats;
+    private String name;
 
     @Override
     public Long getId() {

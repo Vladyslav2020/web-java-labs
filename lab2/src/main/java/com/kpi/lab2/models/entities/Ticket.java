@@ -1,4 +1,4 @@
-package com.kpi.lab2.models;
+package com.kpi.lab2.models.entities;
 
 import lombok.Builder;
 import lombok.Data;

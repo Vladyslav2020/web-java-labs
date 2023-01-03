@@ -1,6 +1,6 @@
 package com.kpi.lab2.views.tables;
 
-import com.kpi.lab2.models.Ticket;
+import com.kpi.lab2.models.entities.Ticket;
 
 import java.util.Collection;
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.kpi.lab2.views.tables;
 
-import com.kpi.lab2.models.RailwayRoute;
+import com.kpi.lab2.models.entities.RailwayRoute;
 import com.kpi.lab2.models.services.TicketService;
 import lombok.AllArgsConstructor;
 

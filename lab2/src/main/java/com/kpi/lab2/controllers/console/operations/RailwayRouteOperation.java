@@ -1,9 +1,9 @@
-package com.kpi.lab2.controllers.operations;
+package com.kpi.lab2.controllers.console.operations;
 
-import com.kpi.lab2.models.RailwayRoute;
-import com.kpi.lab2.models.RailwayStation;
-import com.kpi.lab2.models.Train;
-import com.kpi.lab2.models.User;
+import com.kpi.lab2.models.entities.RailwayRoute;
+import com.kpi.lab2.models.entities.RailwayStation;
+import com.kpi.lab2.models.entities.Train;
+import com.kpi.lab2.models.entities.User;
 import com.kpi.lab2.models.services.RailwayRouteService;
 import com.kpi.lab2.models.services.RailwayStationService;
 import com.kpi.lab2.models.services.TrainService;

@@ -1,6 +1,6 @@
-package com.kpi.lab2.controllers.operations;
+package com.kpi.lab2.controllers.console.operations;
 
-import com.kpi.lab2.models.User;
+import com.kpi.lab2.models.entities.User;
 import com.kpi.lab2.models.services.UserService;
 import com.kpi.lab2.views.InputOutputHelper;
 import lombok.AllArgsConstructor;

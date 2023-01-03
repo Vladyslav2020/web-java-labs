@@ -1,4 +1,4 @@
-package com.kpi.lab2.models;
+package com.kpi.lab2.models.entities;
 
 public interface Entity {
     Long getId();

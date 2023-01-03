@@ -1,9 +1,10 @@
 package com.kpi.lab2.models.daos;
 
 import com.kpi.lab2.exceptions.SQLRuntimeException;
-import com.kpi.lab2.models.RailwayRoute;
-import com.kpi.lab2.models.Ticket;
-import com.kpi.lab2.models.User;
+import com.kpi.lab2.models.entities.RailwayRoute;
+import com.kpi.lab2.models.entities.Ticket;
+import com.kpi.lab2.models.entities.User;
+import org.apache.log4j.Logger;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -16,13 +17,10 @@ import java.util.Map;
 import java.util.Set;
 
 public class TicketDao extends EntityDaoBase<Ticket> {
-    private final UserDao userDao;
-    private final RailwayRouteDao railwayRouteDao;
+    private static final Logger logger = Logger.getLogger(TicketDao.class);
 
-    public TicketDao(DataSource dataSource, UserDao userDao, RailwayRouteDao railwayRouteDao) {
+    public TicketDao(DataSource dataSource) {
         super(dataSource);
-        this.userDao = userDao;
-        this.railwayRouteDao = railwayRouteDao;
     }
 
     @Override
@@ -34,9 +32,9 @@ public class TicketDao extends EntityDaoBase<Ticket> {
     protected Ticket convertToEntity(Map<String, Object> fieldValues) {
         return Ticket.builder()
                 .id((Long) fieldValues.get("id"))
-                .route(railwayRouteDao.findById((Long) fieldValues.get("railway_route_id")))
+                .route(RailwayRoute.builder().id((Long) fieldValues.get("railway_route_id")).build())
                 .seatNumber((Long) fieldValues.get("seat_number"))
-                .owner(userDao.findById((Long) fieldValues.get("user_id")))
+                .owner(User.builder().id((Long) fieldValues.get("user_id")).build())
                 .build();
     }
 
@@ -72,6 +70,7 @@ public class TicketDao extends EntityDaoBase<Ticket> {
             ResultSet resultSet = preparedStatement.executeQuery();
             return getEntitiesFromResultSet(resultSet);
         } catch (SQLException e) {
+            logger.error("Cannot execute SQL query", e);
             throw new SQLRuntimeException(e);
         }
     }
@@ -85,6 +84,7 @@ public class TicketDao extends EntityDaoBase<Ticket> {
             ResultSet resultSet = preparedStatement.executeQuery();
             return getEntitiesFromResultSet(resultSet);
         } catch (SQLException e) {
+            logger.error("Cannot execute SQL query", e);
             throw new SQLRuntimeException(e);
         }
     }
@@ -99,6 +99,7 @@ public class TicketDao extends EntityDaoBase<Ticket> {
             resultSet.next();
             return resultSet.getLong("count");
         } catch (SQLException e) {
+            logger.error("Cannot execute SQL query", e);
             throw new SQLRuntimeException(e);
         }
     }
