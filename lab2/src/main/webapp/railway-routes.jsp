@@ -64,12 +64,14 @@
                 <td>${railwayRoute.duration}</td>
                 <td>${railwayRoute.train.number}</td>
                 <td>${railwayRoute.availableTickets}</td>
-                <td>
-                    <form action="${pageContext.request.contextPath}/tickets" method="get">
-                        <input type="hidden" name="railway-route-id" value="${railwayRoute.id}"/>
-                        <button type="submit" class="btn btn-primary mt-2">Buy</button>
-                    </form>
-                </td>
+                <c:if test="${user.isAdmin == false}">
+                    <td>
+                        <form action="${pageContext.request.contextPath}/tickets" method="get">
+                            <input type="hidden" name="railway-route-id" value="${railwayRoute.id}"/>
+                            <button type="submit" class="btn btn-primary mt-2">Buy</button>
+                        </form>
+                    </td>
+                </c:if>
             </tr>
         </c:forEach>
         </tbody>
