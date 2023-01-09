@@ -1,8 +1,9 @@
 package com.kpi.lab2.models.daos;
 
 import com.kpi.lab2.exceptions.SQLRuntimeException;
-import com.kpi.lab2.models.Entity;
+import com.kpi.lab2.models.entities.Entity;
 import lombok.AllArgsConstructor;
+import org.apache.log4j.Logger;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -10,6 +11,7 @@ import java.util.*;
 
 @AllArgsConstructor
 public abstract class EntityDaoBase<T extends Entity> implements EntityDao<T> {
+    private static final Logger logger = Logger.getLogger(EntityDaoBase.class);
 
     protected DataSource dataSource;
 
@@ -30,6 +32,7 @@ public abstract class EntityDaoBase<T extends Entity> implements EntityDao<T> {
             Map<String, Object> fieldValues = getFieldValuesMap(resultSet);
             return convertToEntity(fieldValues);
         } catch (SQLException e) {
+            logger.error("Cannot execute SQL query", e);
             throw new SQLRuntimeException(e);
         }
     }
@@ -43,6 +46,7 @@ public abstract class EntityDaoBase<T extends Entity> implements EntityDao<T> {
         ) {
             return getEntitiesFromResultSet(resultSet);
         } catch (SQLException e) {
+            logger.error("Cannot execute SQL query", e);
             throw new SQLRuntimeException(e);
         }
     }
@@ -86,12 +90,14 @@ public abstract class EntityDaoBase<T extends Entity> implements EntityDao<T> {
                 preparedStatement.executeUpdate();
                 ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
                 if (!generatedKeys.next()) {
+                    logger.warn("Entity save failed. Cannot get a primary key");
                     throw new IllegalStateException("Entity creation failed. No ID obtained");
                 }
                 long generatedId = generatedKeys.getLong("id");
                 entity.setId(generatedId);
                 return entity;
             } catch (SQLException e) {
+                logger.error("Cannot execute SQL query", e);
                 throw new SQLRuntimeException(e);
             }
         } else {
@@ -113,6 +119,7 @@ public abstract class EntityDaoBase<T extends Entity> implements EntityDao<T> {
                 preparedStatement.executeUpdate();
                 return entity;
             } catch (SQLException e) {
+                logger.error("Cannot execute SQL query", e);
                 throw new SQLRuntimeException(e);
             }
         }
@@ -130,6 +137,7 @@ public abstract class EntityDaoBase<T extends Entity> implements EntityDao<T> {
             preparedStatement.setLong(1, entity.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
+            logger.error("Cannot execute SQL query", e);
             throw new SQLRuntimeException(e);
         }
     }

@@ -1,7 +1,8 @@
 package com.kpi.lab2.models.daos;
 
 import com.kpi.lab2.exceptions.SQLRuntimeException;
-import com.kpi.lab2.models.Train;
+import com.kpi.lab2.models.entities.Train;
+import org.apache.log4j.Logger;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -14,6 +15,8 @@ import java.util.Map;
 import java.util.Set;
 
 public class TrainDao extends EntityDaoBase<Train> {
+    private static final Logger logger = Logger.getLogger(TrainDao.class);
+
     public TrainDao(DataSource dataSource) {
         super(dataSource);
     }
@@ -61,6 +64,7 @@ public class TrainDao extends EntityDaoBase<Train> {
             ResultSet resultSet = preparedStatement.executeQuery();
             return getEntitiesFromResultSet(resultSet);
         } catch (SQLException e) {
+            logger.error("Cannot execute SQL query", e);
             throw new SQLRuntimeException(e);
         }
     }

@@ -13,14 +13,12 @@ public enum EntityDaoFactory {
 
     EntityDaoFactory() {
         DataSource dataSource = DatabaseConnectivityProvider.INSTANCE.getDataSource();
-
-        UserDao userDao = new UserDao(dataSource);
-        TrainDao trainDao = new TrainDao(dataSource);
-        RailwayStationDao railwayStationDao = new RailwayStationDao(dataSource);
-        RailwayRouteDao railwayRouteDao = new RailwayRouteDao(dataSource, railwayStationDao, trainDao);
-        TicketDao ticketDao = new TicketDao(dataSource, userDao, railwayRouteDao);
         entityDaoList = Set.of(
-                userDao, trainDao, railwayRouteDao, railwayStationDao, ticketDao
+                new UserDao(dataSource),
+                new TrainDao(dataSource),
+                new RailwayStationDao(dataSource),
+                new RailwayRouteDao(dataSource),
+                new TicketDao(dataSource)
         );
     }
 

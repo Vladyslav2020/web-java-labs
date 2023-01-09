@@ -1,6 +1,6 @@
 package com.kpi.lab2.views.tables;
 
-import com.kpi.lab2.models.RailwayStation;
+import com.kpi.lab2.models.entities.RailwayStation;
 
 import java.util.Collection;
 import java.util.List;

@@ -1,7 +1,8 @@
 package com.kpi.lab2.models.daos;
 
 import com.kpi.lab2.exceptions.SQLRuntimeException;
-import com.kpi.lab2.models.User;
+import com.kpi.lab2.models.entities.User;
+import org.apache.log4j.Logger;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -14,6 +15,8 @@ import java.util.Map;
 import java.util.Set;
 
 public class UserDao extends EntityDaoBase<User> {
+    private static final Logger logger = Logger.getLogger(UserDao.class);
+
     public UserDao(DataSource dataSource) {
         super(dataSource);
     }
@@ -66,6 +69,7 @@ public class UserDao extends EntityDaoBase<User> {
             ResultSet resultSet = preparedStatement.executeQuery();
             return getEntitiesFromResultSet(resultSet);
         } catch (SQLException e) {
+            logger.error("Cannot execute SQL query", e);
             throw new SQLRuntimeException(e);
         }
     }

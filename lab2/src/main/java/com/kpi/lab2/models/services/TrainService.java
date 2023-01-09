@@ -1,7 +1,7 @@
 package com.kpi.lab2.models.services;
 
 import com.kpi.lab2.models.daos.TrainDao;
-import com.kpi.lab2.models.Train;
+import com.kpi.lab2.models.entities.Train;
 
 import java.util.List;
 

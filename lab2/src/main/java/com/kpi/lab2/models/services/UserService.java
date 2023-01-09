@@ -1,7 +1,7 @@
 package com.kpi.lab2.models.services;
 
 import com.kpi.lab2.models.daos.UserDao;
-import com.kpi.lab2.models.User;
+import com.kpi.lab2.models.entities.User;
 
 import java.util.List;
 

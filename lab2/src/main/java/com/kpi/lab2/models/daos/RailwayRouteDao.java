@@ -1,8 +1,10 @@
 package com.kpi.lab2.models.daos;
 
 import com.kpi.lab2.exceptions.SQLRuntimeException;
-import com.kpi.lab2.models.RailwayRoute;
-import com.kpi.lab2.models.RailwayStation;
+import com.kpi.lab2.models.entities.RailwayRoute;
+import com.kpi.lab2.models.entities.RailwayStation;
+import com.kpi.lab2.models.entities.Train;
+import org.apache.log4j.Logger;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -16,13 +18,10 @@ import java.util.Map;
 import java.util.Set;
 
 public class RailwayRouteDao extends EntityDaoBase<RailwayRoute> {
-    private final RailwayStationDao railwayStationDao;
-    private final TrainDao trainDao;
+    private static final Logger logger = Logger.getLogger(RailwayRouteDao.class);
 
-    public RailwayRouteDao(DataSource dataSource, RailwayStationDao railwayStationDao, TrainDao trainDao) {
+    public RailwayRouteDao(DataSource dataSource) {
         super(dataSource);
-        this.railwayStationDao = railwayStationDao;
-        this.trainDao = trainDao;
     }
 
     @Override
@@ -36,9 +35,9 @@ public class RailwayRouteDao extends EntityDaoBase<RailwayRoute> {
                 .id((Long) fieldValues.get("id"))
                 .startTime((LocalDateTime) fieldValues.get("start_time"))
                 .endTime((LocalDateTime) fieldValues.get("end_time"))
-                .startStation(railwayStationDao.findById((Long) fieldValues.get("start_station_id")))
-                .finishStation(railwayStationDao.findById((Long) fieldValues.get("finish_station_id")))
-                .train(trainDao.findById((Long) fieldValues.get("train_id")))
+                .startStation(RailwayStation.builder().id((Long) fieldValues.get("start_station_id")).build())
+                .finishStation(RailwayStation.builder().id((Long) fieldValues.get("finish_station_id")).build())
+                .train(Train.builder().id((Long) fieldValues.get("train_id")).build())
                 .build();
     }
 
@@ -81,6 +80,7 @@ public class RailwayRouteDao extends EntityDaoBase<RailwayRoute> {
             ResultSet resultSet = preparedStatement.executeQuery();
             return getEntitiesFromResultSet(resultSet);
         } catch (SQLException e) {
+            logger.error("Cannot execute SQL query", e);
             throw new SQLRuntimeException(e);
         }
     }
